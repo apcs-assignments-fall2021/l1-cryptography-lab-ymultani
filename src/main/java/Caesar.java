@@ -5,32 +5,92 @@ public class Caesar {
     // and returns the encrypted String
     // Ex. encryptCaesar("Hello, World!") => "Khoor, Zruog!"
     public static String encryptCaesar(String message) {
-        // REPLACE THIS WITH YOUR CODE
-        return message;
+        String new_string = "";
+        for(int i = 0; i < message.length();i++){
+            char x = message.charAt(i);
+            x = (char) (x+3);
+            new_string += x;
+        }
+
+        return new_string;
     }
 
     // Given a String, decrypts the String with the Caesar cipher
     // and returns the original String
     // Ex. decryptCaesar("Khoor, Zruog!") => "Hello, World!"
     public static String decryptCaesar(String message) {
-        // REPLACE THIS WITH YOUR CODE
-        return message;
+        String new_string = "";
+        for (int i = 0; i <message.length();i++){
+            char x = message.charAt(i);
+            x = (char)(x-3);
+            new_string += x;
+        }
+        return new_string;
     }
 
     // Given a String and a key corresponding to a shift, encrypts
     // the String using the given key and returns the encrypted String
     // Ex. encryptCaesarKey("Hello, World!", 5) => "Mjqqt, Btwqi!".
     public static String encryptCaesarKey(String message, int key) {
-        // REPLACE THIS WITH YOUR CODE
-        return message;
+        String new_string = "";
+        for (int i = 0; i < message.length(); i++) {
+            char x = message.charAt(i);
+            if (x < 65 && x>= 0) {
+                new_string += x;
+            }
+            else if(x >= 91 && x < 97){
+                new_string += x;
+            }
+            else if (x >122){
+                new_string += x;
+            }
+            else{
+                for(int t = 1; t <= key; t++){
+                    x++;
+                    if (x == (char)(123)){
+                        x= 'a';
+
+                    }
+                    else if(x == (char)(91)){
+                        x = 'A';
+                    }
+                }
+                new_string += x;
+            }
+        }
+        return new_string;
     }
 
     // Given a String and a key corresponding to a shift, decrypts
     // the String using the given key and returns the original String
     // Ex. decryptCaesarKey("Mjqqt, Btwqi!", 5) => "Hello, World!"
     public static String decryptCaesarKey(String message, int key) {
-        // REPLACE THIS WITH YOUR CODE
-        return message;
+        String new_string = "";
+        for (int i = 0; i < message.length(); i++){
+            char x = message.charAt(i);
+            if (x < 65 && x>= 0) {
+                new_string += x;
+            }
+            else if(x >= 91 && x < 97){
+                new_string += x;
+            }
+            else if (x >122){
+                new_string += x;
+            }
+            else{
+                for(int t = 1; t <= key;t++){
+                    x--;
+                    if(x == 64){
+                        x = 'Z';
+                    }
+                    else if(x == 96){
+                        x ='z';
+                    }
+                }
+                new_string += x;
+            }
+        }
+        return new_string;
     }
 
 
@@ -45,8 +105,10 @@ public class Caesar {
         if (command.equals("encrypt")) {
             System.out.println("Please enter your message to be encrypted: ");
             String message = scan.nextLine();
+            System.out.println("Please enter your shift key: ");
+            int key = scan.nextInt();
             System.out.println("Here is your encrypted message: ");
-            System.out.println(encryptCaesar(message));
+            System.out.println(encryptCaesarKey(message, key));
         }
         else if (command.equals("decrypt")) {
             System.out.println("Please enter your message to be decrypted: ");
