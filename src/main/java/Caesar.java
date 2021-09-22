@@ -8,8 +8,18 @@ public class Caesar {
         String new_string = "";
         for(int i = 0; i < message.length();i++){
             char x = message.charAt(i);
-            x = (char) (x+3);
-            new_string += x;
+            if((x <65)||(x> 91 && x<97)|| x>122){
+                new_string += x;
+            }
+            else if((x =='x')||(x =='y')||(x=='z')||(x == 'X')||(x=='Y')||(x=='Z')){
+                x = (char)(x-23);
+                new_string += x;
+            }
+            else {
+                x = (char)(x+3);
+                new_string += x;
+            }
+
         }
 
         return new_string;
@@ -22,8 +32,17 @@ public class Caesar {
         String new_string = "";
         for (int i = 0; i <message.length();i++){
             char x = message.charAt(i);
-            x = (char)(x-3);
-            new_string += x;
+            if((x <65)||(x> 91 && x<97)|| x>122){
+                new_string += x;
+            }
+            else if((x =='a')||(x =='b')||(x=='c')||(x == 'A')||(x=='B')||(x=='C')){
+                x = (char)(x+23);
+                new_string += x;
+            }
+            else {
+                x = (char)(x-3);
+                new_string += x;
+            }
         }
         return new_string;
     }
